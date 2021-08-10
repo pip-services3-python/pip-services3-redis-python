@@ -196,7 +196,14 @@
 <li><p><cite>*:credential-store:*:*:1.0</cite> (optional) Credential stores to resolve credential</p></li>
 </ul>
 <p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">:</span> <span class="n">add</span> <span class="n">example</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cache</span> <span class="o">=</span> <span class="n">RedisCache</span><span class="p">()</span>
+<span class="n">cache</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">ConfigParams</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+    <span class="s2">&quot;host&quot;</span><span class="p">,</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="mi">6379</span>
+<span class="p">))</span>
+<span class="n">cache</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>
+<span class="n">cache</span><span class="o">.</span><span class="n">store</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">,</span> <span class="s2">&quot;key1&quot;</span><span class="p">,</span> <span class="s2">&quot;ABC&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="n">cache</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">,</span> <span class="s2">&quot;key1&quot;</span><span class="p">)</span> <span class="c1"># Result: &quot;ABC&quot;</span>
 </pre></div>
 </div>
 <dl class="py method">

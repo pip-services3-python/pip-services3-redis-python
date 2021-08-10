@@ -40,7 +40,22 @@ class RedisLock(Lock, IConfigurable, IReferenceable, IOpenable):
 
     .. code-block:: python
 
-        TODO: add example
+        lock = RedisLock()
+        lock.configure(ConfigParams.from_tuples(
+            "host", "localhost",
+            "port", 6379
+        ))
+
+        lock.open("123")
+
+        lock.acquire_lock("123", "key1", 3000, 1000)
+        try:
+            # Processing...
+            pass
+        finally:
+            lock.release_lock("123", "key1")
+
+        
     """
 
     def __init__(self):
@@ -153,7 +168,7 @@ class RedisLock(Lock, IConfigurable, IReferenceable, IOpenable):
 
         return min(int(options['attempt']) * 100, 3000)
 
-    def try_acquire_lock(self, correlation_id: Optional[str], key: str, ttl: float) -> bool:
+    def try_acquire_lock(self, correlation_id: Optional[str], key: str, ttl: int) -> bool:
         """
         Makes a single attempt to acquire a lock by its key.
         It returns immediately a positive or negative result.
@@ -176,7 +191,7 @@ class RedisLock(Lock, IConfigurable, IReferenceable, IOpenable):
         :param correlation_id: (optional) transaction id to trace execution through call chain.
         :param key: a unique lock key to release.
         """
-
+        a = self.__client
         with self.__client.pipeline() as pipeline:
             # Start transaction on key
             pipeline.watch(key)

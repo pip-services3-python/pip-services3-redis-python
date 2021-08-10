@@ -41,7 +41,14 @@ class RedisCache(ICache, IConfigurable, IReferenceable, IOpenable):
 
     .. code-block:: python
 
-        TODO: add example
+        cache = RedisCache()
+        cache.configure(ConfigParams.from_tuples(
+            "host", "localhost",
+            "port", 6379
+        ))
+        cache.open("123")
+        cache.store("123", "key1", "ABC", None)
+        value = cache.retrieve("123", "key1") # Result: "ABC"
     """
 
     def __init__(self):

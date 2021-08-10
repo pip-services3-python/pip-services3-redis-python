@@ -196,7 +196,20 @@
 <li><p><cite>*:credential-store:*:*:1.0</cite> (optional) Credential stores to resolve credential</p></li>
 </ul>
 <p>Example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span><span class="p">:</span> <span class="n">add</span> <span class="n">example</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lock</span> <span class="o">=</span> <span class="n">RedisLock</span><span class="p">()</span>
+<span class="n">lock</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">ConfigParams</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span>
+    <span class="s2">&quot;host&quot;</span><span class="p">,</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;port&quot;</span><span class="p">,</span> <span class="mi">6379</span>
+<span class="p">))</span>
+
+<span class="n">lock</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span>
+
+<span class="n">lock</span><span class="o">.</span><span class="n">acquire_lock</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">,</span> <span class="s2">&quot;key1&quot;</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Processing...</span>
+    <span class="k">pass</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">lock</span><span class="o">.</span><span class="n">release_lock</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">,</span> <span class="s2">&quot;key1&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="py method">
@@ -270,7 +283,7 @@
 
 <dl class="py method">
 <dt id="pip_services3_redis.lock.RedisLock.RedisLock.try_acquire_lock">
-<code class="sig-name descname">try_acquire_lock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">correlation_id</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ttl</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#pip_services3_redis.lock.RedisLock.RedisLock.try_acquire_lock" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">try_acquire_lock</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">correlation_id</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">ttl</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#pip_services3_redis.lock.RedisLock.RedisLock.try_acquire_lock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes a single attempt to acquire a lock by its key.
 It returns immediately a positive or negative result.</p>
 <dl class="field-list simple">
