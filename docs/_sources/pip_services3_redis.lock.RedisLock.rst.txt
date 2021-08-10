@@ -1,0 +1,7 @@
+pip\_services3\_redis.lock.RedisLock module
+===========================================
+
+.. automodule:: pip_services3_redis.lock.RedisLock
+   :members:
+   :undoc-members:
+   :show-inheritance:

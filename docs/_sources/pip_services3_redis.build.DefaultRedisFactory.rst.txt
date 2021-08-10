@@ -1,0 +1,7 @@
+pip\_services3\_redis.build.DefaultRedisFactory module
+======================================================
+
+.. automodule:: pip_services3_redis.build.DefaultRedisFactory
+   :members:
+   :undoc-members:
+   :show-inheritance:

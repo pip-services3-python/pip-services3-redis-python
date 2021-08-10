@@ -1,0 +1,18 @@
+pip\_services3\_redis.lock package
+==================================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pip_services3_redis.lock.RedisLock
+
+Module contents
+---------------
+
+.. automodule:: pip_services3_redis.lock
+   :members:
+   :undoc-members:
+   :show-inheritance:

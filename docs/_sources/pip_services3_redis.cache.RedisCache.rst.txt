@@ -1,0 +1,7 @@
+pip\_services3\_redis.cache.RedisCache module
+=============================================
+
+.. automodule:: pip_services3_redis.cache.RedisCache
+   :members:
+   :undoc-members:
+   :show-inheritance:

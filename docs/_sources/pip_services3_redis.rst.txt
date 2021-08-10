@@ -1,0 +1,20 @@
+pip\_services3\_redis package
+=============================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pip_services3_redis.build
+   pip_services3_redis.cache
+   pip_services3_redis.lock
+
+Module contents
+---------------
+
+.. automodule:: pip_services3_redis
+   :members:
+   :undoc-members:
+   :show-inheritance:
