@@ -19,17 +19,17 @@ class RedisLock(Lock, IConfigurable, IReferenceable, IOpenable):
     ### Configuration parameters ###
 
         - connection(s):
-          - discovery_key:         (optional) a key to retrieve the connection from :class:`IDiscovery <pip_services3_components.connect.IDiscovery.IDiscovery>`
-          - host:                  host name or IP address
-          - port:                  port number
-          - uri:                   resource URI or connection string with all parameters in it
+            - discovery_key:         (optional) a key to retrieve the connection from :class:`IDiscovery <pip_services3_components.connect.IDiscovery.IDiscovery>`
+            - host:                  host name or IP address
+            - port:                  port number
+            - uri:                   resource URI or connection string with all parameters in it
         - credential(s):
-          - store_key:             key to retrieve parameters from credential store
-          - username:              user name (currently is not used)
-          - password:              user password
+            - store_key:             key to retrieve parameters from credential store
+            - username:              user name (currently is not used)
+            - password:              user password
         - options:
-          - retry_timeout:         timeout in milliseconds to retry lock acquisition. (Default: 100)
-          - retries:               number of retries (default: 3)
+            - retry_timeout:         timeout in milliseconds to retry lock acquisition. (Default: 100)
+            - retries:               number of retries (default: 3)
 
     ### References ###
 
@@ -118,7 +118,6 @@ class RedisLock(Lock, IConfigurable, IReferenceable, IOpenable):
             # connect_timeout: self.__timeout,
             # max_attempts: self.__retries,
             'retry_on_timeout': True,
-            # 'retry_strategy': lambda options: self.__retry_strategy(options)  # TODO add reconnect callback
         }
 
         if connection.get_uri():
@@ -150,23 +149,6 @@ class RedisLock(Lock, IConfigurable, IReferenceable, IOpenable):
                 'NOT_OPENED',
                 'Connection is not opened'
             )
-
-    def __retry_strategy(self, options: dict) -> Any:
-        if options['error'] and options['error']['code'] == 'ECONNREFUSED':
-            # End reconnecting on a specific error and flush all commands with
-            # a individual error
-            return Exception('The server refused the connection')
-
-        if options['total_retry_time'] > self.__timeout:
-            # End reconnecting after a specific timeout and flush all commands
-            # with a individual error
-            return Exception('Retry time exhausted')
-
-        if options['attempt'] > self.__retries:
-            # End reconnecting with built in error
-            return None
-
-        return min(int(options['attempt']) * 100, 3000)
 
     def try_acquire_lock(self, correlation_id: Optional[str], key: str, ttl: int) -> bool:
         """

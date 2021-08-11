@@ -18,18 +18,18 @@ class RedisCache(ICache, IConfigurable, IReferenceable, IOpenable):
     ### Configuration parameters ###
 
     - connection(s):
-      - discovery_key:         (optional) a key to retrieve the connection from :class:`IDiscovery <pip_services3_components.connect.IDiscovery.IDiscovery>`
-      - host:                  host name or IP address
-      - port:                  port number
-      - uri:                   resource URI or connection string with all parameters in it
+        - discovery_key:         (optional) a key to retrieve the connection from :class:`IDiscovery <pip_services3_components.connect.IDiscovery.IDiscovery>`
+        - host:                  host name or IP address
+        - port:                  port number
+        - uri:                   resource URI or connection string with all parameters in it
     - credential(s):
-      - store_key:             key to retrieve parameters from credential store
-      - username:              user name (currently is not used)
-      - password:              user password
+        - store_key:             key to retrieve parameters from credential store
+        - username:              user name (currently is not used)
+        - password:              user password
     - options:
-      - retries:               number of retries (default: 3)
-      - timeout:               default caching timeout in milliseconds (default: 1 minute)
-      - max_size:              maximum number of values stored in this cache (default: 1000)
+        - retries:               number of retries (default: 3)
+        - timeout:               default caching timeout in milliseconds (default: 1 minute)
+        - max_size:              maximum number of values stored in this cache (default: 1000)
 
     ### References ###
 
