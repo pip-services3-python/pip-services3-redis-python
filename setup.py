@@ -13,8 +13,8 @@ Links
 
 """
 
-from setuptools import setup
 from setuptools import find_packages
+from setuptools import setup
 
 try:
     readme = open('readme.md').read()
@@ -23,7 +23,7 @@ except:
 
 setup(
     name='pip_services3_redis',
-    version='3.0.0',
+    version='3.0.1',
     url='http://github.com/pip-services3-python/pip-services3-redis-python',
     license='MIT',
     author='Conceptual Vision Consulting LLC',
@@ -36,11 +36,9 @@ setup(
     zip_safe=True,
     platforms='any',
     install_requires=[
-        'pytest',
         'redis',
-        'hiredis',
-        'pip-services3-commons', 
-        'pip-services3-components',
+        'pip-services3-commons >= 3.3.9, < 4.0',
+        'pip-services3-components >= 3.5.0, < 4.0'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',

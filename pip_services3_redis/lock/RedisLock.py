@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from typing import Any, Optional
+from typing import Optional
 
 import redis
 from pip_services3_commons.config import IConfigurable, ConfigParams
